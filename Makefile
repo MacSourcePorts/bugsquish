@@ -10,7 +10,7 @@
 # User-definable stuff:
 
 BIN_PREFIX=/usr/local/bin/
-DATA_PREFIX=/usr/share/bugsquish/
+DATA_PREFIX=
 
 
 # Defaults for Linux:
@@ -19,7 +19,7 @@ TARGET=bugsquish
 TARGET_DEF=LINUX
 
 
-CFLAGS=-Wall -O2 $(SDL_CFLAGS) -DDATA_PREFIX=\"$(DATA_PREFIX)\" \
+CFLAGS=-arch $(ARCH) -Wall -O2 $(SDL_CFLAGS) -DDATA_PREFIX=\"$(DATA_PREFIX)\" \
         -D$(NOSOUNDFLAG) -D$(TARGET_DEF)
 
 
@@ -29,8 +29,8 @@ MIXER=-lSDL_mixer
 IMAGE=-lSDL_image
 NOSOUNDFLAG=__SOUND
 SDL_LIB=$(SDL_LDFLAGS) $(MIXER) $(IMAGE)
-SDL_CFLAGS := $(shell sdl-config --cflags)
-SDL_LDFLAGS := $(shell sdl-config --libs)
+# SDL_CFLAGS := $(shell sdl-config --cflags)
+# SDL_LDFLAGS := $(shell sdl-config --libs)
 
 installbin = install -g root -o root -m 755 
 installdat = install -g root -o root -m 644
@@ -77,8 +77,8 @@ clean:
 
 # Main executable:
 
-$(TARGET):	bugsquish.o
-	$(CC) $(CFLAGS) bugsquish.o -o $(TARGET) $(SDL_LIB)
+$(TARGET):	bugsquish.o 
+	$(CC) $(CFLAGS) bugsquish.o msputils.m -o $(TARGET) $(SDL_LIB)
 
 
 # Main object:
