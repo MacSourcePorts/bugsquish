@@ -1,0 +1,155 @@
+INSTALL.txt for Bug Squish
+
+by Bill Kendrick
+bill@newbreedsoftware.com
+http://www.newbreedsoftware.com/bugsquish/
+
+Version 0.0.6
+
+April 20, 2002
+
+
+REQUIREMENTS
+------------
+  SDL
+  ---
+    "Bug Squish" was programed using the "Simple Direct Media" layer
+    libraries by Sam Lantinga.  This means that the game can
+    theoretically run under any environment that the SDL libraries support.
+
+      (As of this program's release, this includes: Linux X11/DGA,
+      Win32 WinDIB/DirectX, BeOS BWindow, and Solaris X11, as well
+      as unofficually supported: Linux SVGAlib, IRIX 6.x X11,
+      FreeBSD 3.x X11, and MacOS.)
+
+  SDL_Mixer
+  ---------
+    Sound and music are available, but are not required (see below).
+    You will need the "SDL_Mixer" library compiled and installed
+    if you want sound and music.
+
+  SDL_Image
+  ---------
+    Images are stored as PNG files.  This means you need the "SDL_Image"
+    library compiled and installed.
+
+  Controls
+  --------
+    The game is played with a mouse.
+
+  Downloads
+  ---------
+    You can download the SDL libraries (REQUIRED) from:
+      http://www.libsdl.org/
+
+    You can download SDL_Image (REQUIRED) from:
+      http://www.libsdl.org/projects/SDL_image/
+
+    You can download SDL_Mixer (OPTIONAL) from:
+      http://www.libsdl.org/projects/SDL_mixer/
+
+
+INSTALLING UNDER LINUX/UNIX
+---------------------------
+  -----------------------------------------------------------------
+  Note: Read this entire section before you start issuing commands!
+  -----------------------------------------------------------------
+
+  The "Makefile" that comes with "Bug Squish" assumes a number
+  of defaults about your system.  You can edit their values in
+  the "Makefile" itself, or specify their values when you run
+  the "make" command (ie, "make VARIABLE=value").
+
+  The things you will wish to edit are:
+
+    DATA_PREFIX=$(PWD)/data/
+
+      This defines where "Bug Squish"'s "data/" directory is
+      to be found.  The default assumes that you wish to leave
+      it where it is right now ("$(PWD)" expands to become the
+      current direcotry.
+
+      This variable is useful if you plan on moving the "data/"
+      directory elsewhere, say a globally-accessible
+      "/usr/local/games/bugsquish-data/".
+
+
+  To compile the game, type the command:
+
+    make           [ with whatever variable changes you want, if any ]
+
+  If you decided that you wanted the data somewhere else, make sure
+  to move it there.  If you wanted it to be accessible to others
+  (ie, you're an administrator installing a new game for your users),
+  make sure to set the permissions for the files!  (You'll also want
+  to move the "bugsquish" binary to somewhere globally accessible,
+  and set its permissions, as well, of course!)
+
+  Note: If you do not have the SDL_mixer library, or wish to not
+  compile sound support into the game, you can compile it like this:
+
+    make nosound   [ with whatever variable changes you want, if any ]
+
+  If you wish to return the directory to its distribution state,
+  (remove the ".o" object files, and the "bugsquish" executable program
+  file), you can run:
+
+    make clean
+
+
+COMPILING FOR WINDOWS USING A CROSS-COMPILER UNDER LINUX/UNIX
+-------------------------------------------------------------
+  -----------------------------------------------------------------
+  Note: Read this entire section before you start issuing commands!
+  -----------------------------------------------------------------
+
+  Once you are set up to cross-compile (for example, you've installed
+  the Xmingw32 cross compiler and set your $PATH variable correctly),
+  to compile the game, type the command:
+
+    make win32
+
+  This will re-run the "make" command, sending it some values which
+  will replace the Linux-specific defaults in "Makefile".  The resulting
+  program will be called "bugsquish.exe".
+
+  The values which are altered when you make the "win32" target are:
+
+    TARGET_LIBS=
+      This removes the "-lpthreads" and "-ldl" libraries used under Linux.
+
+    TARGET_DEF=WIN32
+      This causes a "WIN32" definition to be sent to the C compiler, which
+      changes the source slightly to cross-compile for Windows.
+
+    SDL_PREFIX=/usr/win32/
+      Depending on where the Win32 version of the SDL libraries are installed
+      on your system, you may need to edit "Makefile" and change the
+      "SDL_PREFIX" that gets sent in the "win32" make target.      
+
+    TARGET=bugsquish.exe
+      Since Win32 programs are named ".exe", this changes the target filename
+      so that such a file is created.
+
+    DATA_PREFIX=
+      Since the Linux/Unix directory structure won't make sense on a Win32
+      box, the DATA_PREFIX is stripped.  This means "bugsquish.exe" must be
+      run inside the directory containing it's "data/" subdirectory.
+
+  If you wish to return the directory to its distribution state,
+  (remove the ".o" object files, and the "bugsquish.exe" executable program
+  file), you can run:
+
+    make clean
+
+
+ICON FILE
+---------
+  A 32x32, XPM-format icon file (using the standard 23-color "cmap.xpm"
+  color palette) is available if you wish to use an icon for this game.
+
+  The file is "bugsquish-icon.xpm", and installed in Bug Squish's
+  "data/images/" directory.
+
+
+The End!

@@ -1,0 +1,14 @@
+TODO.txt for Bug Squish
+
+by Bill Kendrick
+bill@newbreedsoftware.com
+http://www.newbreedsoftware.com/bugsquish/
+
+Version 0.0.3
+
+December 14, 2000
+
+
+TO DO
+-----
+  More bug types

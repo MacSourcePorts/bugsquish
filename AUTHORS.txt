@@ -1,0 +1,36 @@
+AUTHORS.txt for Bug Squish
+
+by Bill Kendrick
+bill@newbreedsoftware.com
+http://www.newbreedsoftware.com/bugsquish/
+
+Version 0.0.4
+
+November 12, 2001
+
+
+CREDITS
+-------
+  Game Software:      Bill Kendrick <bill@newbreedsoftware.com>
+                      New Breed Software
+                      http://www.newbreedsoftware.com/
+
+  Original Concept:   "Bloodsuckers" for MacOS.
+                      By Brian Greenstone <brian@pangeasoft.net>
+                      Pangea Software
+                      http://www.pangeasoft.net/
+
+  Graphics:           Bill Kendrick, using The GIMP
+                      http://www.gimp.org/
+
+                      Some bug images from the web.
+
+  Arm model:          Bill Kendrick's left arm (nice watch!)
+
+  Sound Effects:      Royalty free sound effects off the Internet.
+                      Some sounds by Bill Kendrick.
+
+  Title Music:        "Corpses In Rain"
+                      by "Nut Case," Sami I Saarnio <saarnio@cc.helsinki.fi>
+
+  Game Music:         "Adventures" by "Kure4Kancer"
