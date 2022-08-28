@@ -25,6 +25,11 @@ const char* getBundlePathSubdir(const char* subdir) {
     return [bundlePath cStringUsingEncoding:NSASCIIStringEncoding];
 }
 
+const char* getBundlePathSubdirAndFile(const char* subdir, const char* file) {
+    NSString *bundlePath = [[[[[NSBundle mainBundle] bundleURL] path] stringByAppendingPathComponent:[NSString stringWithUTF8String:subdir]]stringByAppendingPathComponent:[NSString stringWithUTF8String:file]];
+    return [bundlePath cStringUsingEncoding:NSASCIIStringEncoding];
+}
+
 void displayMessageBox(const char* title, const char* message, int isError) {
     NSAlert *alert = [NSAlert new];
     NSString *titleStr = [NSString stringWithCString:title encoding:NSASCIIStringEncoding];

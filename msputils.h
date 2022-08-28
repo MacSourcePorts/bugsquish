@@ -12,5 +12,6 @@ const char* getAppSupportDirectory(const char* subdir);
 void displayMessageBox(const char* title, const char* message, int isError);
 const char* getBundlePath(void);
 const char* getBundlePathSubdir(const char* subdir);
+const char* getBundlePathSubdirAndFile(const char* subdir, const char* file);
 
 #endif /* msputils_h */

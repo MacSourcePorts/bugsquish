@@ -121,54 +121,54 @@ enum {
 /* Image filenames: */
 
 const char * image_names [NUM_IMAGES] = {
-  DATA_PREFIX "/images/presents.png",
-  DATA_PREFIX "/images/title.png",
-  DATA_PREFIX "/images/arm1.png",
-  DATA_PREFIX "/images/arm2.png",
-  DATA_PREFIX "/images/arm3.png",
-  DATA_PREFIX "/images/arm4.png",
-  DATA_PREFIX "/images/arm5.png",
-  DATA_PREFIX "/images/gauge-full.png",
-  DATA_PREFIX "/images/gauge-empty.png",
-  DATA_PREFIX "/images/scorebox.png",
-  DATA_PREFIX "/images/highscore.png",
-  DATA_PREFIX "/images/wavebox.png",
-  DATA_PREFIX "/images/bonus.png",
-  DATA_PREFIX "/images/paused.png",
-  DATA_PREFIX "/images/numbers.png",
-  DATA_PREFIX "/images/large0.png",
-  DATA_PREFIX "/images/large1.png",
-  DATA_PREFIX "/images/large2.png",
-  DATA_PREFIX "/images/large3.png",
-  DATA_PREFIX "/images/large4.png",
-  DATA_PREFIX "/images/large5.png",
-  DATA_PREFIX "/images/large6.png",
-  DATA_PREFIX "/images/large7.png",
-  DATA_PREFIX "/images/large8.png",
-  DATA_PREFIX "/images/large9.png",
-  DATA_PREFIX "/images/bug0a.png",
-  DATA_PREFIX "/images/bug0b.png",
-  DATA_PREFIX "/images/bug0c.png",
-  DATA_PREFIX "/images/bug1a.png",
-  DATA_PREFIX "/images/bug1b.png",
-  DATA_PREFIX "/images/bug1c.png",
-  DATA_PREFIX "/images/bug2a.png",
-  DATA_PREFIX "/images/bug2b.png",
-  DATA_PREFIX "/images/bug2c.png",
-  DATA_PREFIX "/images/bug3a.png",
-  DATA_PREFIX "/images/bug3b.png",
-  DATA_PREFIX "/images/bug3c.png",
-  DATA_PREFIX "/images/bug4a.png",
-  DATA_PREFIX "/images/bug4b.png",
-  DATA_PREFIX "/images/bug4c.png",
-  DATA_PREFIX "/images/blood.png",
-  DATA_PREFIX "/images/blood-squished.png",
-  DATA_PREFIX "/images/mult.png",
-  DATA_PREFIX "/images/mult-squished.png",
-  DATA_PREFIX "/images/times2.png"
+  DATA_PREFIX "images/presents.png",
+  DATA_PREFIX "images/title.png",
+  DATA_PREFIX "images/arm1.png",
+  DATA_PREFIX "images/arm2.png",
+  DATA_PREFIX "images/arm3.png",
+  DATA_PREFIX "images/arm4.png",
+  DATA_PREFIX "images/arm5.png",
+  DATA_PREFIX "images/gauge-full.png",
+  DATA_PREFIX "images/gauge-empty.png",
+  DATA_PREFIX "images/scorebox.png",
+  DATA_PREFIX "images/highscore.png",
+  DATA_PREFIX "images/wavebox.png",
+  DATA_PREFIX "images/bonus.png",
+  DATA_PREFIX "images/paused.png",
+  DATA_PREFIX "images/numbers.png",
+  DATA_PREFIX "images/large0.png",
+  DATA_PREFIX "images/large1.png",
+  DATA_PREFIX "images/large2.png",
+  DATA_PREFIX "images/large3.png",
+  DATA_PREFIX "images/large4.png",
+  DATA_PREFIX "images/large5.png",
+  DATA_PREFIX "images/large6.png",
+  DATA_PREFIX "images/large7.png",
+  DATA_PREFIX "images/large8.png",
+  DATA_PREFIX "images/large9.png",
+  DATA_PREFIX "images/bug0a.png",
+  DATA_PREFIX "images/bug0b.png",
+  DATA_PREFIX "images/bug0c.png",
+  DATA_PREFIX "images/bug1a.png",
+  DATA_PREFIX "images/bug1b.png",
+  DATA_PREFIX "images/bug1c.png",
+  DATA_PREFIX "images/bug2a.png",
+  DATA_PREFIX "images/bug2b.png",
+  DATA_PREFIX "images/bug2c.png",
+  DATA_PREFIX "images/bug3a.png",
+  DATA_PREFIX "images/bug3b.png",
+  DATA_PREFIX "images/bug3c.png",
+  DATA_PREFIX "images/bug4a.png",
+  DATA_PREFIX "images/bug4b.png",
+  DATA_PREFIX "images/bug4c.png",
+  DATA_PREFIX "images/blood.png",
+  DATA_PREFIX "images/blood-squished.png",
+  DATA_PREFIX "images/mult.png",
+  DATA_PREFIX "images/mult-squished.png",
+  DATA_PREFIX "images/times2.png"
 #ifdef EMBEDDED
   ,
-  DATA_PREFIX "/images/start_cont.png"
+  DATA_PREFIX "images/start_cont.png"
 #endif
 };
 
@@ -203,21 +203,21 @@ enum {
 /* Sound filenames: */
 
 const char * sound_names[NUM_SOUNDS] = {
-  DATA_PREFIX "/sounds/squish2.wav",
-  DATA_PREFIX "/sounds/squish1.wav",
-  DATA_PREFIX "/sounds/ouch.wav",
-  DATA_PREFIX "/sounds/ugh.wav",
-  DATA_PREFIX "/sounds/glug.wav",
-  DATA_PREFIX "/sounds/bonus.wav",
-  DATA_PREFIX "/sounds/ah.wav",
-  DATA_PREFIX "/sounds/highscore.wav"
+  DATA_PREFIX "sounds/squish2.wav",
+  DATA_PREFIX "sounds/squish1.wav",
+  DATA_PREFIX "sounds/ouch.wav",
+  DATA_PREFIX "sounds/ugh.wav",
+  DATA_PREFIX "sounds/glug.wav",
+  DATA_PREFIX "sounds/bonus.wav",
+  DATA_PREFIX "sounds/ah.wav",
+  DATA_PREFIX "sounds/highscore.wav"
 };
 
 
 /* Music filenames: */
 
-#define MUS_TITLE DATA_PREFIX "/music/corpses.mod"
-#define MUS_GAME DATA_PREFIX "/music/adventures.mod"
+#define MUS_TITLE DATA_PREFIX "music/corpses.mod"
+#define MUS_GAME DATA_PREFIX "music/adventures.mod"
 
 
 /* Bug type: */
@@ -1176,12 +1176,7 @@ void setup(void)
       /* Load image file: */
      
 #ifndef EMBEDDED
-      const char *custom_data_dir = getBundlePathSubdir("Contents/Resources/Data/");
-      fprintf(stderr, custom_data_dir);
-      char* image_name = malloc(strlen(custom_data_dir) + strlen(image_names[i]) + 1);
-      strcpy(image_name, custom_data_dir);
-      strcat(image_name, image_names[i]);
-      image = IMG_Load(image_name);
+      image = IMG_Load(getBundlePathSubdirAndFile("Contents/Resources/Data", image_names[i]));
 #else
       image = SDL_LoadBMP(image_names[i]);
 #endif
@@ -1192,7 +1187,7 @@ void setup(void)
                   "\nError: I couldn't load a graphics file:\n"
                   "%s\n"
                   "The Simple DirectMedia error that occured was:\n"
-                  "%s\n\n", image_name, SDL_GetError());
+                  "%s\n\n", image_names[i], SDL_GetError());
           exit(1);
         }
       
@@ -1260,18 +1255,14 @@ void setup(void)
       
       for (i = 0; i < NUM_SOUNDS; i++)
         {
-          const char *custom_data_dir = getBundlePathSubdir("Contents/Resources/Data/");
-          char* sound_name = malloc(strlen(custom_data_dir) + strlen(sound_names[i]) + 1);
-          strcpy(sound_name, custom_data_dir);
-          strcat(sound_name, sound_names[i]);
-          sounds[i] = Mix_LoadWAV(sound_name);
+          sounds[i] = Mix_LoadWAV(getBundlePathSubdirAndFile("Contents/Resources/Data", sound_names[i]));
           if (sounds[i] == NULL)
             {
               fprintf(stderr,
                       "\nError: I could not load the sound file:\n"
                       "%s\n"
                       "The Simple DirectMedia error that occured was:\n"
-                      "%s\n\n", sound_name, SDL_GetError());
+                      "%s\n\n", sound_names[i], SDL_GetError());
               exit(1);
             }
         }
@@ -1281,12 +1272,7 @@ void setup(void)
       
       /* (title) */
       
-      const char *custom_data_dir = getBundlePathSubdir("Contents/Resources/Data/");
-
-      char* mus_title_s = malloc(strlen(custom_data_dir) + strlen(MUS_TITLE) + 1);
-      strcpy(mus_title_s, custom_data_dir);
-      strcat(mus_title_s, MUS_TITLE);
-      mus_title = Mix_LoadMUS(mus_title_s);
+      mus_title = Mix_LoadMUS(getBundlePathSubdirAndFile("Contents/Resources/Data", MUS_TITLE));
       if (mus_title == NULL)
         {
           fprintf(stderr,
@@ -1299,10 +1285,7 @@ void setup(void)
 
       /* (game) */
       
-      char* mus_game_s = malloc(strlen(custom_data_dir) + strlen(MUS_GAME) + 1);
-      strcpy(mus_game_s, custom_data_dir);
-      strcat(mus_game_s, MUS_TITLE);
-      mus_game = Mix_LoadMUS(mus_title_s);
+      mus_game = Mix_LoadMUS(getBundlePathSubdirAndFile("Contents/Resources/Data", MUS_GAME));
       if (mus_game == NULL)
         {
           fprintf(stderr,
@@ -1508,19 +1491,13 @@ void seticon(void)
   
   /* Load icon into a surface: */
 
-  const char *custom_data_dir = getBundlePathSubdir("Contents/Resources/Data/");
-  fprintf(stderr, custom_data_dir);
-  char* icon_name = malloc(strlen(custom_data_dir) + strlen("/images/icon.png") + 1);
-  strcpy(icon_name, custom_data_dir);
-  strcat(icon_name, "/images/icon.png");
-  
-  icon = IMG_Load(icon_name);
+  icon = IMG_Load(getBundlePathSubdirAndFile("Contents/Resources/Data", "images/icon.png"));
   if (icon == NULL)
     {
       fprintf(stderr,
               "\nError: I could not load the icon image: %s\n"
               "The Simple DirectMedia error that occured was:\n"
-              "%s\n\n", icon_name, SDL_GetError());
+              "%s\n\n", DATA_PREFIX "images/icon.png", SDL_GetError());
       exit(1);
     }
   
